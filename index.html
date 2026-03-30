@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kamran Portfolio</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+    background: linear-gradient(to right, #0f172a, #020617);
+    color:white;
+}
+
+/* Navbar */
+nav{
+    display:flex;
+    justify-content:space-between;
+    padding:20px 50px;
+}
+
+nav a{
+    color:white;
+    margin:0 15px;
+    text-decoration:none;
+}
+
+nav a:hover{
+    color:#22d3ee;
+}
+
+/* Hero */
+.hero{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:80px 50px;
+}
+
+.hero-text{
+    max-width:500px;
+}
+
+.hero-text h1{
+    font-size:45px;
+}
+
+.hero-text span{
+    color:#22d3ee;
+}
+
+.hero-text p{
+    margin:20px 0;
+    color:#94a3b8;
+}
+
+.btn{
+    padding:12px 25px;
+    background:#22d3ee;
+    border:none;
+    border-radius:25px;
+    text-decoration:none;
+    color:black;
+    margin-right:10px;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+.btn2{
+    padding:12px 25px;
+    border:1px solid #22d3ee;
+    border-radius:25px;
+    color:#22d3ee;
+    text-decoration:none;
+}
+
+/* Image */
+.hero img{
+
+    width:350px;
+    height:550px;
+    object-fit:cover;
+    border-radius:20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+
+/* Services */
+.services{
+    padding:60px 50px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:#1e293b;
+    padding:20px;
+    border-radius:15px;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+/* Projects */
+.project{
+    background:#1e293b;
+    padding:20px;
+    margin:20px 50px;
+    border-radius:10px;
+}
+
+/* Contact */
+.contact{
+    padding:50px;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .hero{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .hero img{
+        margin-top:20px;
+        width:250px;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav>
+    <h2>Kamran</h2>
+    <div>
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="home">
+    <div class="hero-text">
+        <h1>I'm <span id="typing"></span><br>Kamran Hassan</h1>
+        <p>
+            I am Kamran Hassan Soomro, a passionate web developer.
+            I create modern websites using HTML, CSS & JavaScript.
+        </p>
+
+        <a href="#contact" class="btn">Hire Me</a>
+        <a href="#contact" class="btn2">Contact</a>
+    </div>
+
+    <img src="/pic.jpg">
+</section>
+
+<!-- Services -->
+<section class="services" id="services">
+    <h2>My <span style="color:#22d3ee;">Services</span></h2>
+
+    <div class="cards">
+        <div class="card">Frontend Dev</div>
+        <div class="card">Backend Dev</div>
+        <div class="card">UI/UX Design</div>
+        <div class="card">Project Management</div>
+    </div>
+</section>
+
+<!-- Projects -->
+<section id="projects">
+    <div class="project">
+        <h3>Color Picker Game</h3>
+        <p>JavaScript project</p>
+    </div>
+
+    <div class="project">
+        <h3>Grading System</h3>
+        <p>JavaScript project</p>
+    </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+    <h2>Contact</h2>
+    <p>Email: kamikhansoomro3675@email.com</p>
+    <p>WhatsApp: +923163400720</p>
+</section>
+
+<script>
+
+// Typing Animation
+const words = ["Developer", "Web Developer", "Software Developer"];
+let i = 0, j = 0, isDeleting = false;
+
+function typeEffect(){
+    let word = words[i];
+
+    if(!isDeleting){
+        document.getElementById("typing").innerHTML = word.substring(0, j++);
+        if(j > word.length){
+            isDeleting = true;
+            setTimeout(typeEffect, 1000);
+            return;
+        }
+    } else {
+        document.getElementById("typing").innerHTML = word.substring(0, j--);
+        if(j == 0){
+            isDeleting = false;
+            i = (i + 1) % words.length;
+        }
+    }
+
+    setTimeout(typeEffect, isDeleting ? 50 : 100);
+}
+
+typeEffect();
+
+
+// Scroll Animation
+const elements = document.querySelectorAll(".card, .project");
+
+window.addEventListener("scroll", () => {
+    elements.forEach(el => {
+        let pos = el.getBoundingClientRect().top;
+        if(pos < window.innerHeight - 100){
+            el.style.opacity = "1";
+            el.style.transform = "translateY(0)";
+        }
+    });
+});
+
+// Initial state
+elements.forEach(el => {
+    el.style.opacity = "0";
+    el.style.transform = "translateY(50px)";
+    el.style.transition = "0.8s";
+});
+
+</script>
+
+</body>
+</html>      
